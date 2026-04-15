@@ -1,1 +1,16 @@
+part:Destroy() --destroys a part || sets parent to nil and also destroys on allChildren
+part:Remove() --removes a part
+debris() --deletes a part at a specific time
 
+game.Debris:AddItem(part, 6) -- > (part is what part you're putting (in about 6 seconds part will be removed)
+
+difference between 
+wait(6)
+destroy and new part
+
+vs 
+
+game.Debris:AddItem(part, 6)
+is that with debris, every second it will second spawn and despawn in 5 seconds while destroy() is basically at every 6 seconds one will be gone but will also spawn
+
+debris(not dependent) vs destroy  + spawn (dependent) 

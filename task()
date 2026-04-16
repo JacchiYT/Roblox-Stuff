@@ -1,1 +1,73 @@
+task.wait(seconds) -- basically waits
+task.delay(duration, function) -- it will let the others run then it will do a timer (base on how much you put) then do the function
 
+example:
+-- task - 1
+print("before")
+task.wait(5)
+--task3
+
+task.delay(5, function()
+	print("after x2")
+end)
+
+-- task 2
+task.wait(2)
+print("after")
+-- 
+task 1: 00:01
+task 2: 00:03
+task 3: 00:08
+
+task.cancel() -- cancels a task
+example:
+
+local task = task.delay(5, function)
+task.cancel(task) -- it will cancel the task indefinitely
+
+task.spawn() -- VERY useful for loops
+example:
+-- task - 1
+print("before")
+task.wait(5)
+local isLooping = true
+--task2
+task.spawn(function()
+while isLooping do
+	print("while loop")
+	task.wait()
+	end
+end)
+--task3
+
+for i=1, 10 do
+	print("for loop 2") 
+	task.wait()
+end
+isLooping = false
+-- task3
+print("after")
+
+^^ - task.spawn will allow task 2 to simultaneously do its loop with task 3 and afterr task 3 is done with its loop it will set "isLooping" false therefore stopping the while loop. 
+Cause without the task.spawn, while loop will keep looping and task3 will never do its loop.
+
+task.defer()- basically runs when EVERYTHING is done running
+
+example 1:
+-- task - 1
+print("before")
+task.wait(5)
+local isLooping = true
+--task2
+task.defer(function ()
+	print("defer")
+	
+end)
+
+
+--task3
+for i = 1, 100 do
+	print("loop 1")
+
+end
+task.defer basically executes at a perfect time basically

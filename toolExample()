@@ -3,7 +3,7 @@ local tool = script.Parent
 local sound = tool:WaitForChild("Sound")
 local equipped = false
 
-tool.Equipped:Connect(function()	
+tool.Equipped:Connect(function()	-- when equipped sound will play
 	print("Tool Equipped")
 	sound:Play()
 end)

@@ -1,0 +1,52 @@
+--Initializers--
+local tool = script.Parent
+local sound = tool:WaitForChild("Sound")
+local equipped = false
+
+tool.Equipped:Connect(function()	
+	print("Tool Equipped")
+	sound:Play()
+end)
+
+tool.Activated:Connect(function()
+	local player = game.Players:GetPlayerFromCharacter(tool.Parent)
+	if player then
+		local clicks = player:WaitForChild("leaderstats"):WaitForChild("Clicks")
+		clicks.Value += 1
+	end
+	print("Tool Activated")
+	equipped = true
+
+	local roll = math.random(1, 10)
+
+	if roll == 1 then 
+		tool:ScaleTo(1.5)
+	elseif roll == 2 then
+		tool:ScaleTo(0.5)
+	elseif roll == 3 then
+		tool:ScaleTo(5)
+	elseif roll == 4 then
+		tool:ScaleTo(2)
+	else 		
+		tool:ScaleTo(1)
+	end		
+
+	task.spawn(function()
+		while equipped do 	
+			local randomColor = Color3.fromRGB(
+				math.random(0, 255), 
+				math.random(0, 255), 
+				math.random(0, 255)
+			)
+
+			tool.Handle.Color = randomColor	
+			task.wait(0.5)
+		end
+	end)
+end)
+
+tool.Deactivated:Connect(function()
+	print("Deactivated")
+	equipped = false
+end)
+

@@ -1,1 +1,17 @@
+local tool = script.Parent
+tool.Equipped:Connect(function() -- when equipped
+	print("Tool equipped") -- prints this
+  tool:Activate() -- activates when equipped automatically
+end)
 
+too.Unequipped:Connect(function() - when unequipped
+	print("Tool unequipped") -- prints this
+end)
+
+tool.Activated:Connect(function() -- when mouse clicked
+	print("Tool activated") -- prints this
+end)
+
+tool.Deactivated:Connect(function(0) -- when mouse clicked had died
+  print("Tool deactivateD") -- prints
+end)
